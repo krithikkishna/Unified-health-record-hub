@@ -1,0 +1,56 @@
+@import "@/styles/variables.scss";
+
+.toolsContainer {
+  padding: $spacing-xl;
+  background-color: $background-color;
+  min-height: 100vh;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: $font-weight-bold;
+  color: $primary-color;
+  margin-bottom: $spacing-lg;
+  text-align: center;
+}
+
+.toolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: $spacing-lg;
+}
+
+.toolCard {
+  background-color: #fff;
+  padding: $spacing-lg;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform $transition-fast, box-shadow $transition-fast;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.iconWrapper {
+  font-size: 2.5rem;
+  margin-bottom: $spacing-md;
+  color: $primary-color;
+}
+
+.toolTitle {
+  font-size: 1.25rem;
+  font-weight: $font-weight-bold;
+  color: $text-color;
+  margin-bottom: $spacing-sm;
+}
+
+.toolDescription {
+  font-size: 0.95rem;
+  color: $muted-color;
+}

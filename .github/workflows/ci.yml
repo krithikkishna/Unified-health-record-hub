@@ -1,0 +1,150 @@
+name: UHRH CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  FHIR_SERVER_URL: https://test.fhir.org/r4
+  HIPAA_COMPLIANCE: true
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'npm'
+
+    - name: Install backend dependencies
+      run: |
+        cd backend
+        npm ci
+      env:
+        NODE_ENV: development
+
+    - name: Run backend unit tests
+      run: |
+        cd backend
+        npm test -- --coverage
+      env:
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/testdb
+        JWT_SECRET: testsecret
+
+    - name: Run FHIR API integration tests
+      run: |
+        cd backend
+        npm run test:integration
+      env:
+        FHIR_SERVER_URL: ${{ env.FHIR_SERVER_URL }}
+
+    - name: Install frontend dependencies
+      run: |
+        cd frontend
+        npm ci
+
+    - name: Run frontend tests
+      run: |
+        cd frontend
+        npm test -- --watchAll=false
+
+    - name: Build frontend
+      run: |
+        cd frontend
+        npm run build
+
+  security-scan:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Run OWASP Dependency Check
+      uses: dependency-check/action@v1
+      with:
+        project: 'UHRH'
+        path: '.'
+        format: 'HTML'
+        fail_on_cvss: 7
+
+    - name: HIPAA Security Scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        ignore-unfixed: true
+        severity: 'HIGH,CRITICAL'
+        exit-code: '1'
+        format: 'table'
+        scanners: 'vuln,secret,config'
+
+    - name: FHIR Validation
+      uses: docker://hapiproject/hapi:latest
+      with:
+        args: fhir validate --fhir-version=R4 --file=backend/tests/fhir-test-data/*.json
+
+  deploy-staging:
+    needs: security-scan
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+    - name: Build and push backend
+      run: |
+        docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/uhri-backend:staging ./backend
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/uhri-backend:staging
+
+    - name: Build and push frontend
+      run: |
+        docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/uhri-frontend:staging ./frontend
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/uhri-frontend:staging
+
+    - name: Deploy to Kubernetes
+      uses: azure/k8s-deploy@v3
+      with:
+        namespace: uhri-staging
+        manifests: k8s/staging/
+        images: |
+          ${{ secrets.DOCKER_HUB_USERNAME }}/uhri-backend:staging
+          ${{ secrets.DOCKER_HUB_USERNAME }}/uhri-frontend:staging
+
+  compliance-report:
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    steps:
+    - name: Generate HIPAA Compliance Report
+      uses: hipaa-compliance/action@v1
+      with:
+        config-path: ./docs/hipaa-config.yml
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: compliance-reports
+        path: |
+          ./dependency-check-report.html
+          ./trivy-results.txt
+          ./hipaa-compliance-report.pdf

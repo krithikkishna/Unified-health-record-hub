@@ -1,0 +1,47 @@
+@import "@/styles/variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: $background-color;
+  color: $text-color;
+  text-align: center;
+  padding: $spacing-lg;
+}
+
+.icon {
+  font-size: 80px;
+  color: $danger-color;
+  margin-bottom: $spacing-md;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-sm;
+}
+
+.message {
+  font-size: 1rem;
+  color: $muted-color;
+  margin-bottom: $spacing-md;
+}
+
+.button {
+  padding: $spacing-sm $spacing-md;
+  font-size: 1rem;
+  font-weight: $font-weight-bold;
+  color: #fff;
+  background-color: $primary-color;
+  border: none;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}

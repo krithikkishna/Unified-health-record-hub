@@ -1,0 +1,55 @@
+// src/styles/mixins.scss
+
+// Flex Centering
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  // Flex Column Center
+  @mixin flex-column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  // Text Ellipsis
+  @mixin ellipsis($width: 100%) {
+    width: $width;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  // Responsive Breakpoints
+  $breakpoints: (
+    'sm': 576px,
+    'md': 768px,
+    'lg': 992px,
+    'xl': 1200px
+  );
+  
+  @mixin respond-to($breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+  
+  // Button Style
+  @mixin button-style($bg-color, $text-color: #fff) {
+    background-color: $bg-color;
+    color: $text-color;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  
+    &:hover {
+      background-color: darken($bg-color, 10%);
+    }
+  }
+  

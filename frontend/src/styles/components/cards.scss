@@ -1,0 +1,64 @@
+/* cards.scss */
+
+$card-bg: #ffffff;
+$card-radius: 1rem;
+$card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+$card-padding: 1.5rem;
+$card-transition: all 0.3s ease;
+
+.card {
+  background-color: $card-bg;
+  border-radius: $card-radius;
+  padding: $card-padding;
+  box-shadow: $card-shadow;
+  transition: $card-transition;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  &-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #111827;
+  }
+
+  &-subtitle {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #6b7280;
+    margin-bottom: 1rem;
+  }
+
+  &-content {
+    flex: 1;
+    font-size: 1rem;
+    color: #374151;
+  }
+
+  &-footer {
+    margin-top: 1.5rem;
+    text-align: right;
+  }
+}
+
+/* Variants */
+.card-info {
+  border-left: 5px solid #3b82f6;
+}
+
+.card-success {
+  border-left: 5px solid #10b981;
+}
+
+.card-warning {
+  border-left: 5px solid #f59e0b;
+}
+
+.card-danger {
+  border-left: 5px solid #ef4444;
+}

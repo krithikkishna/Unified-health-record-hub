@@ -1,0 +1,73 @@
+/* grid.scss */
+
+/* Variables */
+$grid-columns: 12;
+$gutter-width: 16px;
+
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+/* Grid Container */
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $gutter-width;
+  padding-left: $gutter-width;
+
+  @each $breakpoint, $value in $breakpoints {
+    @media (min-width: $value) {
+      &.container-#{$breakpoint} {
+        max-width: $value;
+      }
+    }
+  }
+}
+
+/* Row */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -($gutter-width / 2);
+  margin-left: -($gutter-width / 2);
+}
+
+/* Column */
+[class^="col-"] {
+  padding-right: ($gutter-width / 2);
+  padding-left: ($gutter-width / 2);
+  box-sizing: border-box;
+}
+
+/* Generate columns */
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    flex: 0 0 percentage($i / $grid-columns);
+    max-width: percentage($i / $grid-columns);
+  }
+}
+
+/* Responsive columns */
+@each $breakpoint, $value in $breakpoints {
+  @media (min-width: $value) {
+    @for $i from 1 through $grid-columns {
+      .col-#{$breakpoint}-#{$i} {
+        flex: 0 0 percentage($i / $grid-columns);
+        max-width: percentage($i / $grid-columns);
+      }
+    }
+  }
+}
+
+/* Auto-width column */
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}

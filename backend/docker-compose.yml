@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: uhrh-backend
+    build: .
+    ports:
+      - "15200:15200"
+    environment:
+      - PORT=15200
+      - MONGO_URI=mongodb://admin2304:Krithik_Farthin_Mahesh_2304@UHRH-590183953473.eu-west-2.docdb-elastic.amazonaws.com:27017/UHRH?tls=true&authMechanism=SCRAM-SHA-1&retryWrites=false&directConnection=true&tlsCAFile=/usr/src/app/rds-combined-ca-bundle.pem
+      - FHIR_SERVER_URL=http://18.132.118.30:8080/fhir
+      - FHIR_TOKEN=your-fhir-token
+      - BLOCKCHAIN_NETWORK=local-network
+      - ADMIN_TOKEN=your-admin-secret
+    volumes:
+      - .:/usr/src/app
+      - ./rds-combined-ca-bundle.pem:/usr/src/app/rds-combined-ca-bundle.pem
+    working_dir: /usr/src/app
+    command: ["node", "server.js"]
+    restart: unless-stopped
+    depends_on:
+      - mongo
+      - fhir
+    networks:
+      - uhrh-net
+
+  mongo:
+    container_name: uhrh-mongo
+    image: mongo:5
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+    networks:
+      - uhrh-net
+
+  fhir:
+    container_name: uhrh-fhir
+    image: hapiproject/hapi:latest
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    networks:
+      - uhrh-net
+
+volumes:
+  mongo_data:
+
+networks:
+  uhrh-net:
+    driver: bridge

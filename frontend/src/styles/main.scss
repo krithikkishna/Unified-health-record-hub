@@ -1,0 +1,54 @@
+// ---------------------------------------------
+// 1. Base Styles
+// ---------------------------------------------
+@use './base/reset.scss';
+@use './base/typography.scss';
+@use './layout/grid.scss';
+@use './pages/welcome.scss';
+
+
+// ---------------------------------------------
+// 2. Theme Variables and Mixins
+// ---------------------------------------------
+@use './variables.scss';
+@use './mixins.scss';
+
+// ---------------------------------------------
+// 3. UI Components
+// ---------------------------------------------
+@use './components/header.scss';
+@use './components/buttons.scss';
+@use './components/cards.scss';
+
+// ---------------------------------------------
+// 4. Themes
+// ---------------------------------------------
+@use './themes/light.scss';
+@use './themes/dark.scss';
+
+// ---------------------------------------------
+// 5. Global Overrides
+// ---------------------------------------------
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  color: var(--link-color);
+
+  &:hover {
+    color: var(--link-hover-color);
+  }
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+}

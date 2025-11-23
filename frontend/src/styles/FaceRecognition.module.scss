@@ -1,0 +1,53 @@
+.faceContainer {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+  
+    h3 {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+  }
+  
+  .scanButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #0056b3;
+    }
+  
+    &.loading {
+      background-color: #6c757d;
+      cursor: wait;
+    }
+  }
+  
+  .success {
+    margin-top: 0.75rem;
+    color: #28a745;
+    font-weight: 500;
+  
+    i {
+      margin-right: 0.5rem;
+    }
+  }
+  
+  .error {
+    margin-top: 0.75rem;
+    color: #dc3545;
+    font-weight: 500;
+  
+    i {
+      margin-right: 0.5rem;
+    }
+  }
+  

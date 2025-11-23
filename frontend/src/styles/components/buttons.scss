@@ -1,0 +1,89 @@
+/* buttons.scss */
+
+$btn-font: 'Inter', sans-serif;
+$btn-radius: 0.5rem;
+$btn-padding: 0.6rem 1.2rem;
+$btn-font-size: 1rem;
+$btn-transition: all 0.2s ease-in-out;
+
+$color-primary: #4f46e5;
+$color-secondary: #6b7280;
+$color-danger: #ef4444;
+$color-white: #ffffff;
+$color-black: #111827;
+
+/* Base button style */
+.btn {
+  font-family: $btn-font;
+  font-size: $btn-font-size;
+  padding: $btn-padding;
+  border: none;
+  border-radius: $btn-radius;
+  cursor: pointer;
+  transition: $btn-transition;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  text-align: center;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+/* Primary button */
+.btn-primary {
+  background-color: $color-primary;
+  color: $color-white;
+
+  &:hover {
+    background-color: darken($color-primary, 5%);
+  }
+}
+
+/* Secondary button */
+.btn-secondary {
+  background-color: $color-secondary;
+  color: $color-white;
+
+  &:hover {
+    background-color: darken($color-secondary, 5%);
+  }
+}
+
+/* Danger button */
+.btn-danger {
+  background-color: $color-danger;
+  color: $color-white;
+
+  &:hover {
+    background-color: darken($color-danger, 5%);
+  }
+}
+
+/* Outline button */
+.btn-outline {
+  background-color: transparent;
+  color: $color-primary;
+  border: 2px solid $color-primary;
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+  }
+}
+
+/* Full width variant */
+.btn-block {
+  width: 100%;
+}
+
+/* Icon support */
+.btn .icon {
+  margin-right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+

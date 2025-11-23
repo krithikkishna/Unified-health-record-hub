@@ -1,0 +1,84 @@
+@import "@/styles/variables.scss";
+
+.signupContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $background-color;
+  padding: $spacing-xl;
+}
+
+.signupCard {
+  background-color: #fff;
+  padding: $spacing-lg;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-md;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: $font-weight-bold;
+  color: $primary-color;
+  margin-bottom: $spacing-lg;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  text-align: left;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: $spacing-xs;
+    font-weight: $font-weight-bold;
+    color: $text-color;
+  }
+
+  input,
+  select {
+    padding: $spacing-sm;
+    border-radius: $radius-md;
+    border: 1px solid $border-color;
+    font-size: 1rem;
+  }
+}
+
+.submitButton {
+  margin-top: $spacing-md;
+  padding: $spacing-sm $spacing-md;
+  font-weight: $font-weight-bold;
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+.loginLink {
+  margin-top: $spacing-md;
+  font-size: 0.95rem;
+  color: $muted-color;
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

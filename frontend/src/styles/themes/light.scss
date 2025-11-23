@@ -1,0 +1,73 @@
+/* light.scss */
+
+/* Color Palette */
+$primary-color: #4f46e5;         // Indigo
+$secondary-color: #f97316;       // Orange
+$accent-color: #10b981;          // Emerald
+$background-color: #ffffff;
+$surface-color: #f3f4f6;
+$text-color: #111827;
+$text-secondary-color: #6b7280;
+$border-color: #e5e7eb;
+
+/* Status Colors */
+$success-color: #22c55e;
+$warning-color: #facc15;
+$error-color: #ef4444;
+$info-color: #3b82f6;
+
+/* UI Elements */
+$input-background: #ffffff;
+$input-border: #d1d5db;
+$input-text: $text-color;
+$button-background: $primary-color;
+$button-text: #ffffff;
+
+/* Shadows */
+$shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+/* Theme class */
+.theme-light {
+  background-color: $background-color;
+  color: $text-color;
+
+  .card {
+    background-color: $surface-color;
+    box-shadow: $shadow-light;
+    border: 1px solid $border-color;
+  }
+  :root {
+    --bg-color: #fefefe;
+    --text-color: #1e1e1e;
+    --link-color: #2aa198;
+    --link-hover-color: #b58900;
+  }
+  
+
+  .button {
+    background-color: $button-background;
+    color: $button-text;
+    &:hover {
+      background-color: darken($button-background, 10%);
+    }
+  }
+
+  .input {
+    background-color: $input-background;
+    border: 1px solid $input-border;
+    color: $input-text;
+  }
+
+  .link {
+    color: $primary-color;
+    &:hover {
+      color: darken($primary-color, 10%);
+    }
+  }
+
+  .header,
+  .footer {
+    background-color: $surface-color;
+    color: $text-color;
+  }
+}

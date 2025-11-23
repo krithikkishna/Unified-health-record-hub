@@ -1,0 +1,82 @@
+@use '../mixins' as *;
+
+.header {
+    @include flex-center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color:#390344;
+    color:mustartd; 
+    border-bottom: 1px solid purple;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: silver;
+      text-transform: uppercase;
+    }
+  
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+  
+      a {
+        color: rebeccapurple;
+        font-weight: 500;
+        @include transition;
+  
+        &:hover {
+          color: lighten(blue, 10%);
+        }
+      }
+    }
+  
+    .user-menu {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+  
+      .username {
+        font-weight: 600;
+      }
+  
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid teal;
+  
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+  
+      .logout-btn {
+        @include button-base;
+        background-color: coral;
+        color: #fff;
+  
+        &:hover {
+          background-color: darken(tan, 8%);
+        }
+      }
+    }
+  
+    @include respond(sm) {
+      flex-direction: column;
+      align-items: flex-start;
+  
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+  

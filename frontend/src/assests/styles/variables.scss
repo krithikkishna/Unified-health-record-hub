@@ -1,0 +1,38 @@
+// src/styles/variables.scss
+
+// Colors
+$primary-color: #4b7bec;
+$secondary-color: #a5b1c2;
+$success-color: #2ecc71;
+$error-color: #e74c3c;
+$warning-color: #f1c40f;
+$info-color: #3498db;
+$light-color: #f8f9fa;
+$dark-color: #2d3436;
+$text-color: #2c3e50;
+$background-color: #ffffff;
+
+// Typography
+$font-family-base: 'Roboto', sans-serif;
+$font-size-base: 16px;
+$font-size-sm: 14px;
+$font-size-lg: 18px;
+$heading-font-weight: 600;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Border
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-color: #dcdde1;
+
+// Shadows
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 3px 6px rgba(0, 0, 0, 0.15);
+$shadow-lg: 0 6px 12px rgba(0, 0, 0, 0.2);

@@ -1,0 +1,56 @@
+// ---------------------------------------------
+// Media Query Mixin
+// ---------------------------------------------
+@mixin respond($breakpoint) {
+    @if $breakpoint == xs {
+      @media (max-width: 480px) { @content; }
+    } @else if $breakpoint == sm {
+      @media (max-width: 640px) { @content; }
+    } @else if $breakpoint == md {
+      @media (max-width: 768px) { @content; }
+    } @else if $breakpoint == lg {
+      @media (max-width: 1024px) { @content; }
+    } @else if $breakpoint == xl {
+      @media (max-width: 1280px) { @content; }
+    }
+  }
+
+  @mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+
+  @mixin truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  // ---------------------------------------------
+  // Card Shadow
+  // ---------------------------------------------
+  @mixin card-shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  
+  // ---------------------------------------------
+  // Transition
+  // ---------------------------------------------
+  @mixin transition($props: all, $duration: 0.3s, $ease: ease-in-out) {
+    transition: $props $duration $ease;
+  }
+  
+  // ---------------------------------------------
+  // Button Base Style
+  // ---------------------------------------------
+  @mixin button-base {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    @include transition;
+  }
+  

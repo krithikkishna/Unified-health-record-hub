@@ -1,0 +1,83 @@
+@import "@/styles/variables.scss";
+
+.container {
+  padding: $spacing-lg;
+  background-color: $background-color;
+  color: $text-color;
+  min-height: 100vh;
+}
+
+.header {
+  font-size: 1.75rem;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-md;
+  color: $primary-color;
+}
+
+.statusGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $spacing-lg;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid $border-color;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  padding: $spacing-md;
+  transition: box-shadow $transition-fast;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-sm;
+  color: $text-color;
+}
+
+.cardValue {
+  font-size: 1.6rem;
+  font-weight: $font-weight-bold;
+  color: $success-color;
+}
+
+.statusIndicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: $spacing-xs;
+
+  &.healthy {
+    background-color: $success-color;
+  }
+
+  &.warning {
+    background-color: $warning-color;
+  }
+
+  &.critical {
+    background-color: $error-color;
+  }
+}
+
+.refreshButton {
+  margin-top: $spacing-md;
+  padding: $spacing-sm $spacing-md;
+  font-weight: $font-weight-bold;
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}

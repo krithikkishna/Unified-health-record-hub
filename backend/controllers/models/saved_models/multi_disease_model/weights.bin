@@ -1,0 +1,15 @@
+import tensorflow as tf
+import tensorflowjs as tfjs
+import os
+from keras.models import load_model
+
+# Load your trained model (from your Jupyter notebook)
+model = load_model('path_to_your_keras_model.h5')  # This would be your trained model from the notebook
+
+# Create directory for output
+export_dir = 'models/saved_models/multi_disease_model'
+os.makedirs(export_dir, exist_ok=True)
+
+# Convert and save model in TensorFlow.js format
+tfjs.converters.save_keras_model(model, export_dir)
+print(f"Model saved to {export_dir}")

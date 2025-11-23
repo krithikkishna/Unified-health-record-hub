@@ -1,0 +1,31 @@
+
+{
+    "compilerOptions": {
+      "target": "ES2021",
+      "module": "ESNext",
+      "baseUrl": "src",
+      "paths": {
+        "@components/*": ["components/*"],
+        "@pages/*": ["pages/*"],
+        "@context/*": ["context/*"],
+        "@redux/*": ["redux/*"],
+        "@styles/*": ["styles/*"],
+        "@utils/*": ["utils/*"],
+        "@api/*": ["api/*"],
+        "@charts/*": ["charts/*"],
+        "@assets/*": ["assets/*"]
+      },
+      "jsx": "react-jsx",
+      "allowJs": true,
+      "checkJs": false,
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "noEmit": true,
+      "forceConsistentCasingInFileNames": true,
+      "skipLibCheck": true,
+      
+    },
+    "include": ["src"]
+  }
+  

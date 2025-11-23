@@ -1,0 +1,73 @@
+/* dark.scss */
+
+/* Color Palette */
+$primary-color: #6366f1;         // Light Indigo
+$secondary-color: #fb923c;       // Light Orange
+$accent-color: #34d399;          // Light Emerald
+$background-color: #111827;      // Dark Gray
+$surface-color: #1f2937;         // Medium Dark Gray
+$text-color: #f9fafb;
+$text-secondary-color: #9ca3af;
+$border-color: #374151;
+
+/* Status Colors */
+$success-color: #4ade80;
+$warning-color: #fde047;
+$error-color: #f87171;
+$info-color: #60a5fa;
+
+/* UI Elements */
+$input-background: #1e293b;
+$input-border: #334155;
+$input-text: $text-color;
+$button-background: $primary-color;
+$button-text: #ffffff;
+
+/* Shadows */
+$shadow-dark: 0 2px 8px rgba(0, 0, 0, 0.4);
+
+/* Theme class */
+.theme-dark {
+  background-color: $background-color;
+  color: $text-color;
+
+  .card {
+    background-color: $surface-color;
+    box-shadow: $shadow-dark;
+    border: 1px solid $border-color;
+  }
+  [data-theme='dark'] {
+    --bg-color: #121212;
+    --text-color: #f5f5f5;
+    --link-color: #66d9ef;
+    --link-hover-color: #f92672;
+  }
+  
+
+  .button {
+    background-color: $button-background;
+    color: $button-text;
+    &:hover {
+      background-color: lighten($button-background, 10%);
+    }
+  }
+
+  .input {
+    background-color: $input-background;
+    border: 1px solid $input-border;
+    color: $input-text;
+  }
+
+  .link {
+    color: $primary-color;
+    &:hover {
+      color: lighten($primary-color, 10%);
+    }
+  }
+
+  .header,
+  .footer {
+    background-color: $surface-color;
+    color: $text-color;
+  }
+}

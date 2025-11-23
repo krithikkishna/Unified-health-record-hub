@@ -1,0 +1,21 @@
+User-agent: *
+Disallow:
+# Allow all bots to access everything except sensitive paths
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /predict/
+Disallow: /dashboard/
+Disallow: /export/
+Disallow: /auth/
+
+# Allow only Googlebot
+User-agent: Googlebot
+Disallow:
+
+# Block all other bots
+User-agent: *
+Disallow: /
+
+# Optional: Point to sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
